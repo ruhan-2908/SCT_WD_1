@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Navigation Menu</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: transparent;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.4s ease, box-shadow 0.4s ease;
+      z-index: 999;
+    }
+
+    nav.scrolled {
+      background-color: #1e1e2f;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .logo span {
+      color: #00e6e6;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .nav-links li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+      position: relative;
+      padding: 5px 0;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      color: #00e6e6;
+    }
+
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: #00e6e6;
+      left: 0;
+      bottom: 0;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+
+    section {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #home {
+      background: linear-gradient(135deg, #00bcd4, #2196f3);
+    }
+
+    #about {
+      background: linear-gradient(135deg, #673ab7, #512da8);
+    }
+
+    #projects {
+      background: linear-gradient(135deg, #ff5722, #e64a19);
+    }
+
+    #contact {
+      background: linear-gradient(135deg, #009688, #004d40);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        gap: 15px;
+        position: absolute;
+        top: 70px;
+        right: 30px;
+        background-color: #1e1e2f;
+        padding: 15px 20px;
+        border-radius: 8px;
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav id="navbar">
+    <div class="logo">Skill<span>Craft</span></div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="home">
+    <h1>Welcome to SkillCraft</h1>
+  </section>
+
+  <section id="about">
+    <h1>About Us</h1>
+  </section>
+
+  <section id="projects">
+    <h1>Our Projects</h1>
+  </section>
+
+  <section id="contact">
+    <h1>Contact Us</h1>
+  </section>
+
+  <script>
+    const navbar = document.getElementById("navbar");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 10) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+  </script>
+</body>
+</html>
